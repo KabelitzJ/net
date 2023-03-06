@@ -1,0 +1,6 @@
+project = net-server
+
+using version
+using config
+using install
+using dist

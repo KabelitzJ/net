@@ -1,0 +1,13 @@
+: 1
+name: net-server
+version: 0.1.0-a.0.z
+project: net
+summary: net-server C++ executable
+license: other: proprietary ; Not free/open source.
+description-file: README.md
+url: https://example.org/net
+email: jonas.kabelitz@belden.com
+#build-error-email: jonas.kabelitz@belden.com
+depends: * build2 >= 0.15.0
+depends: * bpkg >= 0.15.0
+#depends: libhello ^1.0.0

@@ -6,8 +6,9 @@
 
 namespace net {
 
-session::session(boost::asio::ip::tcp::socket socket)
-: _socket{std::move(socket)} { }
+session::session(boost::asio::ip::tcp::socket socket, std::shared_ptr<router> router)
+: _socket{std::move(socket)},
+  _router{router} { }
 
 auto session::start() -> void {
   _read_request();
@@ -17,8 +18,8 @@ auto session::_read_request() -> void {
   auto request_buffer = boost::asio::dynamic_buffer(_request);
 
   boost::asio::async_read_until(_socket, request_buffer, '\n', [this, self = shared_from_this()](boost::system::error_code error_code, std::size_t bytes_read){
-    if (!error_code) {
-      logger::info("session", "read: {}", error_code.message());
+    if (error_code) {
+      logger::info("session", error_code.message());
       _stop();
       return;
     }
@@ -48,8 +49,8 @@ auto session::_write_response() -> void {
   auto response_buffer = boost::asio::buffer(_response);
 
   boost::asio::async_write(_socket, response_buffer, [this, self = shared_from_this()](boost::system::error_code error_code, std::size_t bytes_written){
-    if (!error_code) {
-      logger::info("session", "write: {}", error_code.message());
+    if (error_code) {
+      logger::info("session", error_code.message());
     }
 
     _stop();

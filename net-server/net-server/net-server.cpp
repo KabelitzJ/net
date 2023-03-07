@@ -9,9 +9,17 @@
 
 #include <net-server/logger.hpp>
 #include <net-server/server.hpp>
+#include <net-server/request.hpp>
+#include <net-server/response.hpp>
 
 auto main(int argc, const char** argv) -> int {
   auto server = net::server{8888};
+
+  server.add_route(net::verb::get, "/", [](const net::request& request) -> net::response {
+    auto response = net::response{};
+
+    return response;
+  });
 
   server.start();
 

@@ -33,7 +33,6 @@ private:
 
   auto _stop() -> void;
 
-
   boost::asio::ip::tcp::socket _socket;
   std::shared_ptr<router> _router;
   std::string _request;

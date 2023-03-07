@@ -4,6 +4,7 @@
 #include <mutex>
 #include <sstream>
 #include <unordered_map>
+#include <regex>
 
 #include <nlohmann/json.hpp>
 

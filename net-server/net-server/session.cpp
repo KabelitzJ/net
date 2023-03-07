@@ -3,6 +3,7 @@
 #include <sstream>
 
 #include <net-server/logger.hpp>
+#include <net-server/utility.hpp>
 
 namespace net {
 
@@ -29,6 +30,12 @@ auto session::_read_request() -> void {
 }
 
 auto session::_handle_request() -> void {
+  auto lines = split_string(_request, std::string{"\r\n"});
+
+  for (const auto& line : lines) {
+    logger::info("session", "{}", line);
+  }
+
   _create_response();
   _write_response();
 }

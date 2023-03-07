@@ -33,7 +33,7 @@ auto server::add_route(verb verb, const std::string& path, route::handle handle)
 auto server::_accept() -> void {
   _acceptor.async_accept([this](boost::system::error_code error_code, boost::asio::ip::tcp::socket socket){
     if (error_code) {
-      logger::info("server", error_code.message());
+      logger::error("server", error_code.message());
       return;
     }
 

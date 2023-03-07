@@ -19,7 +19,7 @@ auto session::_read_request() -> void {
 
   boost::asio::async_read_until(_socket, request_buffer, '\n', [this, self = shared_from_this()](boost::system::error_code error_code, std::size_t bytes_read){
     if (error_code) {
-      logger::info("session", error_code.message());
+      logger::error("session", error_code.message());
       _stop();
       return;
     }
@@ -50,7 +50,7 @@ auto session::_write_response() -> void {
 
   boost::asio::async_write(_socket, response_buffer, [this, self = shared_from_this()](boost::system::error_code error_code, std::size_t bytes_written){
     if (error_code) {
-      logger::info("session", error_code.message());
+      logger::error("session", error_code.message());
     }
 
     _stop();

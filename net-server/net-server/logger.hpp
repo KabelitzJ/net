@@ -23,6 +23,12 @@ public:
   template<typename Type>
   static auto info(const std::string& name, const Type& value) -> void;
 
+  template<typename... Args>
+  static auto error(const std::string& name, format_string_type<Args...> format, Args&&... args) -> void;
+
+  template<typename Type>
+  static auto error(const std::string& name, const Type& value) -> void;
+
 private:
 
   static auto _logger(const std::string& name) -> spdlog::logger&;

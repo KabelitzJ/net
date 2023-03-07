@@ -10,4 +10,7 @@ email: jonas.kabelitz@belden.com
 #build-error-email: jonas.kabelitz@belden.com
 depends: * build2 >= 0.15.0
 depends: * bpkg >= 0.15.0
-#depends: libhello ^1.0.0
+depends: libboost-asio >= 1.78.0
+depends: libboost-beast >= 1.78.0
+depends: nlohmann-json >= 3.11.1
+depends: spdlog >= 1.10.0

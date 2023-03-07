@@ -1,6 +1,9 @@
-libs =
-#import libs += libhello%lib{hello}
+dependencies =
+import dependencies += libboost-asio%liba{boost_asio}
+import dependencies += libboost-beast%liba{boost_beast}
+import dependencies += nlohmann-json%liba{json}
+import dependencies += spdlog%liba{spdlog}
 
-exe{net-server}: {hxx ixx txx cxx}{**} $libs
+exe{net-server}: {hxx ixx txx cxx}{**} $dependencies
 
 cxx.poptions =+ "-I$out_root" "-I$src_root"
